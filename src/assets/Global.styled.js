@@ -12,11 +12,21 @@ const GlobalStyles = createGlobalStyle`
 
     p {
         font-size: 1.6rem;
+        
     }
 
     h1 {
-        font-size: 8rem;
+        font-size: 6rem;
 
+    }
+
+    @media (max-width: 550px) {
+        p {
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 4rem;
+        }
     }
 `;
 

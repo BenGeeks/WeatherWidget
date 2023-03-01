@@ -41,6 +41,12 @@ export const Main = styled.div`
   margin: 1rem auto;
 `;
 
+export const WeatherContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const OtherDetails = styled.div`
   display: flex;
   justify-content: space-evenly;

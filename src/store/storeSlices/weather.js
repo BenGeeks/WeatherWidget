@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiRequest from '../axios';
 import { toast } from 'react-toastify';
-import Sunny from '../../assets/images/sunny.jpg';
 
 export const getWeatherData = createAsyncThunk('chart/getWeatherData', async (action) => {
   return await apiRequest(action);
@@ -9,9 +8,6 @@ export const getWeatherData = createAsyncThunk('chart/getWeatherData', async (ac
 
 const initialState = {
   weatherData: {},
-  themeSettings: {
-    backgroundImg: Sunny,
-  },
   status: 'idle',
 };
 
@@ -26,12 +22,17 @@ export const weatherSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(getWeatherData.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.weatherData = action.payload.data;
+        if (action.payload.cod === 200) {
+          state.status = 'succeeded';
+          state.weatherData = action.payload;
+        } else {
+          state.status = 'failed';
+          toast.error(action.payload.response.data.message);
+        }
       })
       .addCase(getWeatherData.rejected, (state, action) => {
         state.status = 'failed';
-        toast.error(action.payload.message);
+        toast.error('An error occured while fetching the weather data.');
       });
   },
 });
