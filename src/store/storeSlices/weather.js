@@ -18,7 +18,7 @@ export const weatherSlice = createSlice({
   extraReducers(builder) {
     builder
       // get weather data
-      .addCase(getWeatherData.pending, (state, action) => {
+      .addCase(getWeatherData.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(getWeatherData.fulfilled, (state, action) => {
@@ -30,7 +30,7 @@ export const weatherSlice = createSlice({
           toast.error(action.payload.response.data.message);
         }
       })
-      .addCase(getWeatherData.rejected, (state, action) => {
+      .addCase(getWeatherData.rejected, (state) => {
         state.status = 'failed';
         toast.error('An error occured while fetching the weather data.');
       });

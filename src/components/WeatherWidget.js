@@ -30,7 +30,7 @@ const Weather = ({ data }) => {
     <Container>
       <InputContainer>
         <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} onKeyUp={onKeyUpHandler} placeholder="Enter Location" />
-        <Button1 onClick={onSearchHandler} disabled={status === 'loading'}>
+        <Button1 onClick={onSearchHandler} disabled={status === 'loading' || location === ''}>
           {status === 'loading' ? 'Fetching Data...' : 'Search'}
         </Button1>
       </InputContainer>
